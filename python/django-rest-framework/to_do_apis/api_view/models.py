@@ -8,6 +8,6 @@ class Tag(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=255, blank=False, null=False)
-    detail = models.TextField()
+    detail = models.TextField(max_length=255, blank=False, null=True)
     is_checked = models.BooleanField(default=False)
-    tags_list = models.ManyToManyField(Tag, related_name='tags_list_task')
+    tags_list = models.ManyToManyField(Tag, related_name='tags_list_task',  blank=True)
