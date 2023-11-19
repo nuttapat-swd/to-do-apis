@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const sequelize = require("D:/SWD/project/to-do-apis/nodeJs/Express/to-do-list/src/config/database");
-const Tag = require("../src/models/Tag")
-const Task = require("../src/models/Task")
-const TaskTag = require("../src/models/TaskTag")
+const sequelize = require("./config/database");
+const Tag = require("./models/Tag")
+const Task = require("./models/Task")
+const TaskTag = require("./models/TaskTag")
 
 
 // Sync the models with the database

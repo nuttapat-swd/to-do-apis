@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize')
-const db = require('./src/config/database')
-const Task = require('./src/models/Task')
-const Tag = require('./src/models/Task')
+const db = require('../config/database')
+const Task = require('./Task')
+const Tag = require('./Tag')
 
-const TaskTag = db.define('UserRole', {
+const TaskTag = db.define('TaskTag', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -12,7 +12,7 @@ const TaskTag = db.define('UserRole', {
   });
 
 // Establishing the many-to-many relationship
-Task.belongsToMany(Tag, { through: TaskTag });
-Tag.belongsToMany(Task, { through: TaskTag });
+Task.belongsToMany(Tag, { as: 'TagList', through: TaskTag, foreignKey: 'taskId'});
+Tag.belongsToMany(Task, { as: 'Taskserd', through: TaskTag, foreignKey: 'tagId' });
 
 module.exports = TaskTag;

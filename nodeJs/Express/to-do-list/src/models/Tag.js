@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize')
-const db = require('./src/config/database')
+const db = require('../config/database')
 
 const Tag = db.define('Tag', {
     id: {

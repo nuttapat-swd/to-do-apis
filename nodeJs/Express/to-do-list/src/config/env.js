@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
-
-dotenv.config(); // Load environment variables from .env file
+const path = require('path');
+const envPath = path.join(__dirname, '../../.env');
+dotenv.config({ path: envPath}); // Load environment variables from .env file
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -39,5 +40,5 @@ const config = {
       // Other production environment configurations
     },
   };
-  
+
   module.exports = config[env];
