@@ -5,9 +5,11 @@ const Tag = require("./models/Tag")
 const Task = require("./models/Task")
 const TaskTag = require("./models/TaskTag")
 
+// Import Router
+const tagRouter = require("./routes/tagRouter")
 
 // Sync the models with the database
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     console.log('Database and tables synced!');
   })
@@ -16,9 +18,13 @@ sequelize.sync({ force: true })
   });
 
 
-app.get('/', (req, res) => {
-    res.send('TEst TESt Test')
-})
+  // Middleware for parsing JSON and URL-encoded bodies
+app.use(express.json()); // Parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+// Use the routers
+app.use('/tags', tagRouter); // All user-related routes start with /users
+
 
 app.listen(8000, () => {
     console.log('Start Server at port 8000')
