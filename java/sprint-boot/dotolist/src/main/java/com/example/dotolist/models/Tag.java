@@ -1,5 +1,6 @@
 package com.example.dotolist.models;
 
+import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
@@ -14,11 +15,11 @@ public class Tag {
     @JsonProperty("id")
     private Long id;
     
-    @Column(columnDefinition = "varchar(255)", nullable=true)
+    @Column(columnDefinition = "varchar(255)", nullable=false)
     @JsonProperty("title")
     private String title;
 
-    @Column(columnDefinition = "varchar(255) default '#000000", nullable=true)
+    @Column(columnDefinition = "varchar(255) default '#000000", nullable=false)
     @JsonProperty("color")
     private String color;
 
@@ -50,5 +51,8 @@ public class Tag {
     public String getColor() {
         return this.color;
     }
+
+    @ManyToMany(mappedBy = "tagList")
+    Set<Task> tasksList;
 
 }
