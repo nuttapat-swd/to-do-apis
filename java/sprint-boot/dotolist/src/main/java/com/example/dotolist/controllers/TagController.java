@@ -5,6 +5,7 @@ import com.example.dotolist.models.Tag;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +22,13 @@ public class TagController {
     TagService tagService;
 
     @GetMapping("/")
-    public List<Tag> getAllTags(String param) {
-        return tagService.getAllTags();
+    public ResponseEntity<List<Tag>> getAllTags(String param) {
+        return ResponseEntity.ok(tagService.getAllTags());
     }
 
     @PostMapping("/")
-    public Tag createTag(@RequestBody Tag tag) {
-        return tagService.createTag(tag);
+    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) {
+        return new ResponseEntity<Tag>(tagService.createTag(tag), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/")
