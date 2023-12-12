@@ -28,4 +28,8 @@ public class Task {
       uniqueConstraints = @UniqueConstraint(columnNames = {"task_id", "tag_id"})
       )
     Set<Tag> tagList;
+
+    public void setId(Long id) {
+      this.id = id;
+    }
 }
