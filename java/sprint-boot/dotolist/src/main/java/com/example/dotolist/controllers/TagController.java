@@ -1,5 +1,4 @@
 package com.example.dotolist.controllers;
-import com.example.dotolist.dto.TagDto;
 import com.example.dotolist.models.Tag;
 
 import java.util.List;
@@ -10,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.dotolist.services.TagService;
-
-
 
 
 @RestController
@@ -32,22 +29,20 @@ public class TagController {
     }
 
     @GetMapping("/{id}/")
-    public ResponseEntity<TagDto> getTagById(@PathVariable("id") Long id) {        
-        Tag tag = tagService.getTagById(id);     
-        if (tag != null) {
-            TagDto tagDTO = new TagDto(tag);
-            return ResponseEntity.ok(tagDTO);
-        } else {
+    public ResponseEntity<Tag> getTagById(@PathVariable("id") Long id) {        
+        Tag tag = tagService.getTagById(id);
+        if (tag == null) {
             return ResponseEntity.notFound().build();
-        } 
+        }
+        return ResponseEntity.ok(tag);
     }
 
     @PatchMapping("/{id}/")
-    public ResponseEntity<TagDto> updateTag(@PathVariable("id") Long id, @RequestBody Tag tagDetail){
+    public ResponseEntity<Tag> updateTag(@PathVariable("id") Long id, @RequestBody Tag tagDetail){
         Tag tag = tagService.updateTag(id, tagDetail);
         if(tag!=null){
-            TagDto tagDto = new TagDto(tag);
-            return ResponseEntity.ok(tagDto);
+            // TagDto tagDto = new TagDto(tag);
+            return ResponseEntity.ok(tag);
         }
         else {
             return ResponseEntity.notFound().build();
