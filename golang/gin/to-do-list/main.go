@@ -12,11 +12,18 @@ func hello(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "world"})
 }
 
+func test(ctx *gin.Context) {
+	ctx.String(200, "test")
+}
+
 func main() {
 	router := gin.New()
-
+	router.ForwardedByClientIP = true
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 	db := postgresql.GetDB()
 	db.AutoMigrate(&models.Tag{}, &models.Task{})
+
+	router.GET("/test", test)
 
 	router.Run(":8080")
 }
