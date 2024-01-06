@@ -47,14 +47,14 @@ func GetTagByID(ctx *gin.Context) {
 }
 
 func UpdateTags(ctx *gin.Context) {
-	var existingTask models.Task
+	var existingTag models.Tag
 	db := postgresql.GetDB()
 
-	tagID := ctx.Param("id")
+	tagID := ctx.Param("TagID")
 
-	result := db.First(&existingTask, tagID)
-	if result.Error != nil {
-		ctx.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
+	result := db.First(&existingTag, tagID).Error
+	if result != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{"error": "Tag not found"})
 		return
 	}
 
@@ -64,6 +64,10 @@ func UpdateTags(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	// Update only the fields provided in the JSON request
+	db.Model(&existingTag).Updates(updates)
+
+	ctx.JSON(http.StatusOK, existingTag)
 
 }
 
