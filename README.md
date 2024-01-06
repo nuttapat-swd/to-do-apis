@@ -5,12 +5,19 @@ My repository for learning Backend Programming Language and Framework to work at
 ### Targets
 
 **Pytohn** : `✅ Django REST Framework` `FastAPI` `Flask`
+
 **Node.JS** : `✅ ExpressJS` `NestJS`
+
 **Java** : `✅ Spring Boot`
+
 **Go (Golang)** : `👨🏻‍💻 Gin` `Echo` `Fiber` `Gorilla Mux`
+
 **Ruby** : `Ruby On Rails`
+
 **PHP** : `Laravel` `Lumen`
+
 **Rust** : `Rocket` `Axum`
+
 **.Net** : `ASP.NET`
 
 
