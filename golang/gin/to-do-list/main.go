@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/nuttapat/gin-todo/models"
+	"github.com/nuttapat/gin-todo/routes"
 	"github.com/nuttapat/gin-todo/services/postgresql"
 )
 
@@ -17,13 +18,17 @@ func test(ctx *gin.Context) {
 }
 
 func main() {
-	router := gin.New()
-	router.ForwardedByClientIP = true
-	router.SetTrustedProxies([]string{"127.0.0.1"})
+	app_router := gin.New()
+	app_router.ForwardedByClientIP = true
+	app_router.SetTrustedProxies([]string{"127.0.0.1"})
 	db := postgresql.GetDB()
 	db.AutoMigrate(&models.Tag{}, &models.Task{})
 
-	router.GET("/test", test)
+	app_router.GET("/", func(ctx *gin.Context) {
+		ctx.String(200, "test")
+	})
+	// Initialize routes
+	routes.InitRoutes(app_router)
 
-	router.Run(":8080")
+	app_router.Run(":8080")
 }
