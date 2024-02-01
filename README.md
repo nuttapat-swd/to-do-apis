@@ -4,7 +4,7 @@ My repository for learning Backend Programming Language and Framework to work at
 
 ### Targets
 
-**Pytohn** : `✅ Django REST Framework` `FastAPI` `Flask`
+**Pytohn** : `✅ Django REST Framework` `FastAPI` `Django Ninja` `Flask` 
 
 **Node.JS** : `✅ ExpressJS` `NestJS`
 
