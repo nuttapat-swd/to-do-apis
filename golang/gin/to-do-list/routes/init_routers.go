@@ -10,4 +10,5 @@ func InitRoutes(router *gin.Engine) {
 
 	// Initialize tag routes separately
 	InitTagRoutes(v1)
+	InitTaskRouters(v1)
 }
